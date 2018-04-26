@@ -6,6 +6,7 @@ const {
 } = graphql;
 
 const UserType = require('./types/user_type.js');
+const AuthService = require('../services/auth.js');
 
 
 const mutation = new GraphQLObjectType ({
@@ -20,8 +21,9 @@ const mutation = new GraphQLObjectType ({
         password:{type: GraphQLString}
       },
       // request代表了来自expres的请求
-      resolve(parentValue, args, request){
-        
+      //当resolve 里有promise的时候需要用retur来返回
+      resolve(parentValue, {email, password}, req){
+        return AuthService.signup({email, password, req});
       }
     }
   }
