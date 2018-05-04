@@ -1,10 +1,12 @@
 import React from 'react';
 import Header from './Header.js';
 
-const App = () => {
+const App = (props) => {
+  console.log(props)
   return (
-    <div>
+    <div className="container">
       <Header />
+      {props.children}
     </div>
   );
 }
