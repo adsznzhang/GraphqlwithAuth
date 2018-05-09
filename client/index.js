@@ -6,6 +6,7 @@ import {ApolloProvider} from 'react-apollo';
 import {Router, hashHistory, Route,IndexRoute} from 'react-router';
 import App from './components/App.js'
 import LoginForm from './components/LoginForm.js';
+import SignupForm from './components/SignupForm.js';
 
 //让浏览器到后端的请求默认带cookies
 const networkInterface = createNetworkInterface({
@@ -26,6 +27,7 @@ const Root = () => {
       <Router history={hashHistory}>
         <Route path="/" component={App}>
           <Route path="login" component={LoginForm}/>
+          <Route path="signup" component={SignupForm}/>
         </Route>
       </Router>
     </ApolloProvider>
