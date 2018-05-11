@@ -3,6 +3,7 @@ import AuthForm from './AuthForm.js';
 import mutation from '../mutations/Login.js';
 import { graphql } from 'react-apollo';
 import query from '../queries/CurrentUser.js';
+import { hashHistory} from 'react-router';
 
 class LoginForm extends Component{
 
@@ -10,6 +11,17 @@ class LoginForm extends Component{
     super(props);
 
     this.state = {errors: []};
+  }
+
+
+  componentWillUpdate(nextProps){
+    //this.props //the old, current set of props
+    //nextProps// the next set of props that will be in place
+
+    if(!this.props.data.user && nextProps.data.user){
+      //如果原先没有用户，而通过登陆我们获取了用户信息则进行redirect
+      hashHistory.push('/dashboard');
+    }
   }
 
   //通过属性把email和密码传递给mutatio
