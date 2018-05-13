@@ -8,6 +8,7 @@ import App from './components/App.js'
 import LoginForm from './components/LoginForm.js';
 import SignupForm from './components/SignupForm.js';
 import Dashboard from './components/Dashboard.js';
+import requireAuth from './components/requireAuth.js';
 
 //让浏览器到后端的请求默认带cookies
 const networkInterface = createNetworkInterface({
@@ -29,7 +30,7 @@ const Root = () => {
         <Route path="/" component={App}>
           <Route path="login" component={LoginForm}/>
           <Route path="signup" component={SignupForm}/>
-          <Route path="dashboard" component={Dashboard} />
+          <Route path="dashboard" component={requireAuth(Dashboard)} />
         </Route>
       </Router>
     </ApolloProvider>
